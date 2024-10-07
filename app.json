@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "OurSaga_v2",
-    "slug": "OurSaga_v2",
+    "name": "OurSaga",
+    "slug": "oursaga",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "icon": "./assets/images/new-icon.png",
+    "scheme": "oursaga",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -16,6 +16,8 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.oursage.oursage",
+      "version": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -31,6 +33,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c773e7c6-84e5-4518-9d48-9a6add2761a3"
+      }
     }
   }
 }
