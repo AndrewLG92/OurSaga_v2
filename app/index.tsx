@@ -13,7 +13,7 @@ const index = () => {
 
     return (
        
-        <SafeAreaView className="h-full bg-bgPrimary">
+        <SafeAreaView className="h-full bg-black">
             <ScrollView contentContainerStyle={{ height: '100%'}} >
                 <View className="w-full items-center min-h-[85vh] px-4">
                     <Image 
@@ -30,7 +30,7 @@ const index = () => {
                     <View className="relative mt-5">
                         <Text className="text-2xl text-gray-200 font-extrabold text-center">
                             Discover your Everlasting Story....A Tell that will last for 
-                            <Text className="text-orange-600"> Generations!</Text>
+                            <Text className="text-red-500"> Generations!</Text>
                         </Text>
                     </View>
                     <Text className="text-sm font-mono font-extrabold text-gray-100 mt-7">
