@@ -1,13 +1,18 @@
 import { ScrollView, Text, View, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Link, Href, Redirect, router } from 'expo-router';
+import { Redirect, router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomButton from '@/components/CustomButton';
+import { useGlobalContext } from '@/context/GlobalProvider';
 
 
 const index = () => {
-    const home = "/home" as Href;
+    
+    const { isLoading, isLoggedIn } = useGlobalContext();
+
+    if(!isLoading && isLoggedIn ) return <Redirect href="/home" />
+
     const logo = require('@/assets/images/oursaga-logo.png');
     const cover = require('@/assets/images/cover-img.png');
 

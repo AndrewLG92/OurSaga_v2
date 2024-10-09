@@ -1,9 +1,10 @@
-import { View, Text, ScrollView, Image } from 'react-native'
+import { View, Text, ScrollView, Image, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import FormField from '@/components/FormField';
 import CustomButton from '@/components/CustomButton';
-import { Link, Href } from 'expo-router';
+import { Link, Href, router } from 'expo-router';
+import { createUser } from '@/lib/appwrite'
 
 const SignUp = () => {
   const signIn = "/sign-in" as Href;
@@ -14,8 +15,24 @@ const SignUp = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const submit = () => {
+  const submit = async () => {
+    if(!form.username || !form.email || !form.password){
+      Alert.alert('Error', 'Please fill in all the fields');
+    }
 
+    setIsSubmitting(true);
+
+    try {
+      const result = await createUser(form.email, form.password, form.username);
+
+      // set it to globel state...
+
+      router.replace('/home');
+    } catch (error: any) {
+      Alert.alert('Error', error.message)
+    }finally{
+      setIsSubmitting(false);
+    }
   }
 
   const logo = require('@/assets/images/oursaga-logo.png');
@@ -61,7 +78,7 @@ const SignUp = () => {
           />
 
           <CustomButton 
-            title="Sign In"
+            title="Sign Up"
             handlePress={submit}
             containerStyles="mt-7 w-full"
             isLoading={isSubmitting}
