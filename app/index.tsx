@@ -11,7 +11,7 @@ const index = () => {
     
     const { isLoading, isLoggedIn } = useGlobalContext();
 
-    if(!isLoading && isLoggedIn ) return <Redirect href="/home" />
+    if(!isLoading && isLoggedIn ) return <Redirect href="/profile" />
 
     const logo = require('@/assets/images/oursaga-logo.png');
     const cover = require('@/assets/images/cover-img.png');

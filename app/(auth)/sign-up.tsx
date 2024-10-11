@@ -27,7 +27,7 @@ const SignUp = () => {
 
       // set it to globel state...
 
-      router.replace('/home');
+      router.replace('/profile');
     } catch (error: any) {
       Alert.alert('Error', error.message)
     }finally{
