@@ -7,19 +7,13 @@ import InfoBox from '@/components/InfoBox'
 import { signOut } from '@/lib/appwrite';
 import { Href, router } from 'expo-router';
 import Feather from '@expo/vector-icons/Feather';
+import { StatusBar } from 'expo-status-bar';
 
 const Profile = () => {
   const [refreshing, setRefreshing] = useState(false);
   const { user, setUser, setIsLoggedIn} = useGlobalContext();
 
-  const logout = async () => {
-    try {
-      await signOut();
-      router.push('/sign-in')
-    } catch (error: any) {
-      Alert.alert('Error', error.message)      
-    }
-  }
+  
   
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -31,18 +25,20 @@ const Profile = () => {
 
   return (
     <SafeAreaView className="bg-black h-full">
-      <RefreshControl refreshing={refreshing} onRefresh={onRefresh}>
-        <View className="w-full justify-center items-center mt-6 mb-12 px-4">
-          <TouchableOpacity 
-            className="w-full items-end mr-4"
-            onPress={() => router.push("/(settings)/")}
-          >
-            <Feather 
-              name="settings" 
-              size={24} 
-              color="red" 
-            />
-          </TouchableOpacity>
+      <RefreshControl refreshing={refreshing} onRefresh={onRefresh} className="mt-5">
+        <View className="w-full justify-center items-center mb-12 px-4">
+          <View className="w-full items-end relative mt-5">
+            <TouchableOpacity 
+              className="w-full items-end mr-5"
+              onPress={() => router.push("/(settings)")}
+            >
+              <Feather 
+                name="settings" 
+                size={24} 
+                color="red" 
+              />
+            </TouchableOpacity>
+          </View>
           <View className="w-24 h-24 border-4 border-red-400 rounded-full justify-center items-center">
             <Image 
               source={{uri: user?.avatar }} 
@@ -57,7 +53,9 @@ const Profile = () => {
             />
         </View>
       </RefreshControl>
+      <StatusBar backgroundColor='#161622' style={'light'}/>
     </SafeAreaView>
+    
   )
 }
 

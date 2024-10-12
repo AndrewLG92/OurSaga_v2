@@ -89,6 +89,13 @@ const TabsLayout = () => {
                         )
                     }}
                 />
+                <Tabs.Screen
+                    name="(settings)"
+                    options={{
+                        headerShown: false,
+                        tabBarItemStyle: {display: 'none'},
+                    }}
+                />
                 
             </Tabs>
         </>
