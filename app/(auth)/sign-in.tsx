@@ -4,9 +4,11 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import FormField from '@/components/FormField';
 import CustomButton from '@/components/CustomButton';
 import { Link, Href, router } from 'expo-router';
-import { signIn } from '@/lib/appwrite';
+import { getCurrentUser, signIn } from '@/lib/appwrite';
+import { useGlobalContext } from '@/context/GlobalProvider';
 
 const SignIn = () => {
+  const { setUser, setIsLoggedIn } = useGlobalContext();
   const signUp = "/sign-up" as Href;
   const [form, setForm] = useState({
     email: '',
@@ -24,7 +26,10 @@ const SignIn = () => {
     try {
       await signIn(form.email, form.password);
 
-      // set it to globel state...
+      const result = await getCurrentUser();
+
+      setUser(result);
+      setIsLoggedIn(true);
 
       router.replace('/profile');
     } catch (error: any) {

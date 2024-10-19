@@ -35,19 +35,27 @@ const pathData = [
   },
   {
     id: 6,
-    title: 'LogOut',
+    title: 'Logout',
     pathname: null,
   }
 ]
 
 const Item = ({title, pathname}: any) => {
   return (
-    <View className="border border-red-800 w-full mt-20">
+    <View className="w-full mt-20">
       <TouchableOpacity 
         onPress={() => router.push({pathname})}
-        className="w-auto h-auto"
+        className="w-auto h-auto flex flex-row justify-between flex-nowrap"
       >
-        <Text className="text-5xl text-center text-white">{title}</Text>
+        <Text className="order-1 text-5xl text-center text-white">{title}</Text>
+        <View className="order-2 bg-red-500">
+          <Feather 
+            name={'chevron-right'}
+            size={42}
+            color={'white'}
+          />
+        </View>
+        
       </TouchableOpacity>
     </View>
   )
@@ -55,7 +63,7 @@ const Item = ({title, pathname}: any) => {
 
 const LogOut = ({title}: any) => {
   return (
-    <View className="border border-red-800 w-full mt-10 mb-10">
+    <View className="border border-white w-full mt-10 mb-10">
       <TouchableOpacity 
         onPress={logout}
         className="inline-flex flex-row items-center justify-center gap-10"
@@ -95,16 +103,13 @@ const Index = () => {
         </View>
         <FlatList 
           data={pathData}
-          className="mb-10"
+          className="mb-10 w-full"
           renderItem={({item}) => 
             item.id != 6 ? <Item title={item.title} pathname={item.pathname} /> :
             <LogOut title={item.title} />
           }
-          
         />
-        
       </SafeAreaView>
-      
       <StatusBar backgroundColor='#161622' style={'light'}/>
     </>
   )

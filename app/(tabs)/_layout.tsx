@@ -1,6 +1,6 @@
 import { View, Text, Image} from 'react-native'
 import React from 'react'
-import { Tabs, Redirect } from 'expo-router'
+import { Tabs, Redirect, router } from 'expo-router'
 import Feather from '@expo/vector-icons/Feather';
 
 interface IconProps {
@@ -74,8 +74,9 @@ const TabsLayout = () => {
                         )
                     }}
                 />
-                <Tabs.Screen 
+                <Tabs.Screen
                     name="messages"
+                    
                     options={{
                         title: 'Messages',
                         headerShown: false,
@@ -88,6 +89,13 @@ const TabsLayout = () => {
                             />
                         )
                     }}
+                    listeners={() => ({
+                        tabPress: (e) => {
+                            e.preventDefault();
+                            router.push("/messages")
+                        }
+                    })}
+                    
                 />
                 <Tabs.Screen
                     name="(settings)"

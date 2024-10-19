@@ -4,7 +4,6 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useGlobalContext } from '@/context/GlobalProvider'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import InfoBox from '@/components/InfoBox'
-import { signOut } from '@/lib/appwrite';
 import { Href, router } from 'expo-router';
 import Feather from '@expo/vector-icons/Feather';
 import { StatusBar } from 'expo-status-bar';
@@ -12,8 +11,6 @@ import { StatusBar } from 'expo-status-bar';
 const Profile = () => {
   const [refreshing, setRefreshing] = useState(false);
   const { user, setUser, setIsLoggedIn} = useGlobalContext();
-
-  
   
   const onRefresh = useCallback(() => {
     setRefreshing(true);
